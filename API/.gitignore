@@ -1,0 +1,8 @@
+planning
+config
+node_modules
+tests
+data
+.vscode
+*.csv
+*.sql

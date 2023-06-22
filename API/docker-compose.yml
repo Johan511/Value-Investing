@@ -1,0 +1,32 @@
+version: "3"
+services:
+  node-app:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=node-app
+    volumes:
+      - ./data/mongo_db:/data/db
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - PGUSER=postgres
+      - POSTGRES_PASSWORD=password
+
+    volumes: 
+      - ./data/pg_db:/var/lib/postgresql/data
+
+volumes:
+  mongo:
+  postgres:
